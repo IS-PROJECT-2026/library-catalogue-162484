@@ -33,19 +33,30 @@ body {
     font-size: 1.7rem;
 }
 
-nav {
+.main-nav ul {
     display: flex;
+    list-style: none;
     gap: 20px;
 }
 
-nav a {
+.main-nav a {
     color: #222;
     text-decoration: none;
     font-weight: 600;
+    padding: 8px 4px;
 }
 
-nav a:hover {
+.main-nav a:hover,
+.main-nav a.active {
     text-decoration: underline;
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
 .hero {
@@ -131,13 +142,38 @@ footer {
 @media (max-width: 700px) {
 
     .site-header .container {
-        flex-direction: column;
-        padding: 18px 0;
+        position: relative;
+        min-height: 70px;
     }
 
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 15px 5%;
+    }
+
+    .main-nav.open {
+        display: block;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-nav a {
+        display: block;
+        padding: 10px 0;
     }
 
     .hero {
