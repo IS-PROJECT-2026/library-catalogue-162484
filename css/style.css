@@ -276,3 +276,101 @@ footer p {
         grid-template-columns: 1fr;
     }
 }
+
+/* 
+   BOOK CATALOGUE 
+*/
+
+.catalogue-section {
+    background: var(--background);
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.section-heading > p:last-child {
+    color: var(--muted);
+}
+
+
+/* Book grid */
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+
+/* Book card */
+
+.book-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.book-card h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.book-author {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.book-category {
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+
+/* Availability */
+
+.book-status {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.available {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.unavailable {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+
+/* Responsive catalogue */
+
+@media (max-width: 900px) {
+
+    .book-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

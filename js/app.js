@@ -43,3 +43,90 @@ if (menuToggle && mainNav) {
 
     });
 }
+
+// BOOK CATALOGUE
+const books = [
+    {
+        title: "Things Fall Apart",
+        author: "Chinua Achebe",
+        category: "Fiction",
+        available: true
+    },
+    {
+        title: "The River Between",
+        author: "Ngũgĩ wa Thiong'o",
+        category: "Fiction",
+        available: true
+    },
+    {
+        title: "Atomic Habits",
+        author: "James Clear",
+        category: "Self Development",
+        available: false
+    },
+    {
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        category: "Technology",
+        available: true
+    },
+    {
+        title: "The Alchemist",
+        author: "Paulo Coelho",
+        category: "Fiction",
+        available: true
+    },
+    {
+        title: "Introduction to Algorithms",
+        author: "Thomas H. Cormen",
+        category: "Technology",
+        available: false
+    }
+];
+
+function displayBooks() {
+
+    const bookList = document.getElementById("book-list");
+
+    if (!bookList) {
+        return;
+    }
+
+    bookList.innerHTML = "";
+
+    books.forEach(function(book) {
+
+        const card = document.createElement("article");
+        card.className = "book-card";
+
+        const title = document.createElement("h3");
+        title.textContent = book.title;
+
+        const author = document.createElement("p");
+        author.className = "book-author";
+        author.textContent = `Author: ${book.author}`;
+
+        const category = document.createElement("p");
+        category.className = "book-category";
+        category.textContent = `Category: ${book.category}`;
+
+        const status = document.createElement("span");
+
+        status.className = book.available
+            ? "book-status available"
+            : "book-status unavailable";
+
+        status.textContent = book.available
+            ? "Available"
+            : "Currently Borrowed";
+
+        card.appendChild(title);
+        card.appendChild(author);
+        card.appendChild(category);
+        card.appendChild(status);
+
+        bookList.appendChild(card);
+    });
+}
+
+displayBooks();
