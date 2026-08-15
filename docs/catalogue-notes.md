@@ -1,3 +1,5 @@
-# Catalogue Filtering
+# BookNest Catalogue
 
-Users can search books by title or author and filter the catalogue by category.
+The BookNest catalogue allows users to browse available books by title and author.
+
+Users can also filter books by category to find relevant books more easily.
