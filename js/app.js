@@ -84,7 +84,7 @@ const books = [
     }
 ];
 
-function displayBooks() {
+function displayBooks(bookCollection = books) {
 
     const bookList = document.getElementById("book-list");
 
@@ -94,7 +94,15 @@ function displayBooks() {
 
     bookList.innerHTML = "";
 
-    books.forEach(function(book) {
+    if (bookCollection.length === 0) {
+        const message = document.createElement("p");
+        message.className = "no-results";
+        message.textContent = "No books found matching your search.";
+        bookList.appendChild(message);
+        return;
+    }
+
+    bookCollection.forEach(function(book) {
 
         const card = document.createElement("article");
         card.className = "book-card";
@@ -130,3 +138,27 @@ function displayBooks() {
 }
 
 displayBooks();
+
+const searchInput = document.getElementById("book-search");
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function() {
+
+        const searchTerm = searchInput.value
+            .trim()
+            .toLowerCase();
+
+        const filteredBooks = books.filter(function(book) {
+
+            const title = book.title.toLowerCase();
+
+            const author = book.author.toLowerCase();
+
+            return title.includes(searchTerm)
+                || author.includes(searchTerm);
+        });
+
+        displayBooks(filteredBooks);
+    });
+}

@@ -374,3 +374,45 @@ footer p {
     }
 
 }
+
+/* CATALOGUE SEARCH */
+
+.catalogue-controls {
+    max-width: 600px;
+    margin-bottom: 35px;
+}
+
+.catalogue-controls label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+#book-search {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+}
+
+#book-search:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.search-highlight {
+    font-weight: 800;
+}
