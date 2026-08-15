@@ -91,15 +91,19 @@ const books = [
 ];
 
 function borrowBook(book) {
-
     if (!book.available) {
         return;
     }
-
     book.available = false;
-
     applyFilters();
+}
 
+function returnBook(book) {
+    if (book.available) {
+        return;
+    }
+    book.available = true;
+    applyFilters();
 }
 
 function displayBooks(bookCollection = books) {
@@ -150,17 +154,26 @@ function displayBooks(bookCollection = books) {
             ? "Available"
             : "Currently Borrowed";
 
-        const borrowButton = document.createElement("button");
+        const actionButton = document.createElement("button");
 
-        borrowButton.className = "borrow-button";
-        borrowButton.textContent = book.available
+        actionButton.className = book.available
+            ? "borrow-button"
+            : "return-button";
+
+        actionButton.textContent = book.available
             ? "Borrow Book"
-            : "Unavailable";
+            : "Return Book";
 
-        borrowButton.disabled = !book.available;
+        actionButton.disabled = false;
 
-        borrowButton.addEventListener("click", function() {
-            borrowBook(book);
+        actionButton.addEventListener("click", function() {
+
+            if (book.available) {
+                borrowBook(book);
+            } else {
+                returnBook(book);
+            }
+
         });
 
         card.appendChild(title);
@@ -168,7 +181,7 @@ function displayBooks(bookCollection = books) {
         card.appendChild(category);
         card.appendChild(year);
         card.appendChild(status);
-        card.appendChild(borrowButton);
+        card.appendChild(actionButton);
 
         bookList.appendChild(card);
     });
