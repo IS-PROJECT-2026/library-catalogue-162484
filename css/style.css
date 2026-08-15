@@ -416,3 +416,31 @@ footer p {
 .search-highlight {
     font-weight: 800;
 }
+
+/* CATEGORY FILTER */
+
+.filter-control {
+    margin-top: 20px;
+}
+
+.filter-control label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+#category-filter {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+}
+
+#category-filter:focus {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+}

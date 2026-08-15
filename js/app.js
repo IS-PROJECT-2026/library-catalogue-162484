@@ -139,26 +139,82 @@ function displayBooks(bookCollection = books) {
 
 displayBooks();
 
+const categoryFilter = document.getElementById("category-filter");
+
+function populateCategories() {
+
+    if (!categoryFilter) {
+        return;
+    }
+
+    const categories = [];
+
+    books.forEach(function(book) {
+
+        if (!categories.includes(book.category)) {
+            categories.push(book.category);
+        }
+
+    });
+
+    categories.sort();
+
+    categories.forEach(function(category) {
+
+        const option = document.createElement("option");
+
+        option.value = category;
+        option.textContent = category;
+
+        categoryFilter.appendChild(option);
+
+    });
+}
+
 const searchInput = document.getElementById("book-search");
+function applyFilters() {
+
+    const searchTerm = searchInput
+        ? searchInput.value.trim().toLowerCase()
+        : "";
+
+    const selectedCategory = categoryFilter
+        ? categoryFilter.value
+        : "all";
+
+    const filteredBooks = books.filter(function(book) {
+
+        const matchesSearch =
+            book.title.toLowerCase().includes(searchTerm) ||
+            book.author.toLowerCase().includes(searchTerm);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            book.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+
+    });
+
+    displayBooks(filteredBooks);
+}
+
+if (categoryFilter) {
+
+    categoryFilter.addEventListener("change", function() {
+        applyFilters();
+    });
+
+}
+
 
 if (searchInput) {
 
     searchInput.addEventListener("input", function() {
-
-        const searchTerm = searchInput.value
-            .trim()
-            .toLowerCase();
-
-        const filteredBooks = books.filter(function(book) {
-
-            const title = book.title.toLowerCase();
-
-            const author = book.author.toLowerCase();
-
-            return title.includes(searchTerm)
-                || author.includes(searchTerm);
-        });
-
-        displayBooks(filteredBooks);
+        applyFilters();
     });
+
 }
+
+populateCategories();
+applyFilters();
