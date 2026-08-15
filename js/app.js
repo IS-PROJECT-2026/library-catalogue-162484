@@ -44,6 +44,8 @@ if (menuToggle && mainNav) {
     });
 }
 
+const STORAGE_KEY = "booknest-borrowing-status";
+
 // BOOK CATALOGUE
 const books = [
     {
@@ -90,11 +92,48 @@ const books = [
     }
 ];
 
+function loadBorrowingStatus() {
+    const savedStatus = localStorage.getItem(STORAGE_KEY);
+    if (!savedStatus) {
+        return;
+    }
+    try {
+        const borrowingStatus = JSON.parse(savedStatus);
+        books.forEach(function(book) {
+            if (Object.prototype.hasOwnProperty.call(
+                borrowingStatus,
+                book.title
+            )) {
+                book.available = borrowingStatus[book.title];
+            }
+        });
+    } catch (error) {
+        console.error(
+            "Unable to load borrowing status:",
+            error
+        );
+    }
+}
+
+function saveBorrowingStatus() {
+    const borrowingStatus = {};
+    books.forEach(function(book) {
+        borrowingStatus[book.title] = book.available;
+    });
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(borrowingStatus)
+    );
+}
+
+loadBorrowingStatus();
+
 function borrowBook(book) {
     if (!book.available) {
         return;
     }
     book.available = false;
+    saveBorrowingStatus();
     applyFilters();
 }
 
@@ -103,6 +142,7 @@ function returnBook(book) {
         return;
     }
     book.available = true;
+    saveBorrowingStatus();
     applyFilters();
 }
 
