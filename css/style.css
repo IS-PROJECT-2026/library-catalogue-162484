@@ -361,6 +361,29 @@ footer p {
     color: var(--danger);
 }
 
+/* Borrow Functionality */
+.borrow-button {
+    width: 100%;
+    padding: 11px 15px;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.borrow-button:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.borrow-button:disabled {
+    background: var(--muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 
 /* Responsive catalogue */
 
