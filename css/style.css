@@ -334,6 +334,11 @@ footer p {
     margin-bottom: 20px;
 }
 
+.book-year {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
 
 /* Availability */
 

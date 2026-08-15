@@ -50,36 +50,42 @@ const books = [
         title: "Things Fall Apart",
         author: "Chinua Achebe",
         category: "Fiction",
+        year: 1958,
         available: true
     },
     {
         title: "The River Between",
         author: "Ngũgĩ wa Thiong'o",
         category: "Fiction",
+        year: 1965,
         available: true
     },
     {
         title: "Atomic Habits",
         author: "James Clear",
         category: "Self Development",
+        year: 2018,
         available: false
     },
     {
         title: "Clean Code",
         author: "Robert C. Martin",
         category: "Technology",
+        year: 2008,
         available: true
     },
     {
         title: "The Alchemist",
         author: "Paulo Coelho",
         category: "Fiction",
+        year: 1988,
         available: true
     },
     {
         title: "Introduction to Algorithms",
         author: "Thomas H. Cormen",
         category: "Technology",
+        year: 1990,
         available: false
     }
 ];
@@ -118,6 +124,10 @@ function displayBooks(bookCollection = books) {
         category.className = "book-category";
         category.textContent = `Category: ${book.category}`;
 
+        const year = document.createElement("p");
+        year.className = "book-year";
+        year.textContent = `Published: ${book.year}`;
+
         const status = document.createElement("span");
 
         status.className = book.available
@@ -131,6 +141,7 @@ function displayBooks(bookCollection = books) {
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(category);
+        card.appendChild(year);
         card.appendChild(status);
 
         bookList.appendChild(card);
